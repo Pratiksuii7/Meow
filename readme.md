@@ -1,2 +1,3 @@
 <h1>Meow Meow</h1>
-<p>Click the cat to get coins/interact with it, feed it, play with it, you will get coins after clicking buy your cat treat, mouse, pillow, make it happy and enjoy it.</p>
+<p>Click the cat to get coins/interact with it, feed it, play with it, you will get coins after clicking buy your cat treat, mouse, pillow, make it happy and enjoy it.I made this using HTML, CSS and JS.This website has loads of CSS. I used CSS to make Cat.</p> <br>
+<p>You can run it by just forking it, clone this repository, install live server and run the server then you can see it.</p>
