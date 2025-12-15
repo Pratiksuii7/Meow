@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meow Meow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="backgroundlayer">
+        <div class="tutorial">
+            <h2>Welcome to Cat Clicker/Meow Meow</h2>
+            
+        </div>
+        <div class="stars"></div>
+        <div class="clouds">
+            <div class="cloud one"></div>
+            <div class="cloud two"></div>
+            <div class="cloud three"></div>
+        </div>
+    </div>
+
+    <div class="appwrapper">
+        <div class="leftpanel">
+            <div class="profilecard">
+                <h2>My Meow Meow</h2>
+                <div class="moodbadge">
+                    <span id="moodicon"></span>
+                    <span id="moodtext">Neutral</span>
+                </div>
+                <div class="levelbox">
+                    <span>Level</span>
+                    <span id="levelval">1</span>
+                </div>
+            </div>
+
+            <div class="statscontainer">
+                <div class="statrow">
+                    <div class="labelgroup">
+                        <span class="icon"></span>
+                        <span>Happiness</span>
+                    </div>
+                    <div class="prognesstrack">
+                        <div id="happybar" class="progressfill red"></div>
+                    </div>
+                    <span id="happyval" class="numval">50%</span>
+                </div>
+
+                <div class="statrow">
+                    <div class="labelgroup">
+                        <span class="icon"></span>
+                        <span>Hunger</span>
+                    </div>
+                    <div class="prognesstrack">
+                        <div id="hungerbar" class="progressfill orange"></div>
+                    </div>
+                    <span id="hungerval" class="numval">50%</span>
+                </div>
+
+                <div class="statrow">
+                    <div class="labelgroup">
+                        <span class="icon"></span>
+                        <span>Energy</span>
+                    </div>
+                    <div class="prognesstrack">
+                        <div id="energybar" class="progressfill blue"></div>
+                    </div>
+                    <span id="energyval" class="numval">50%</span>
+                </div>
+            </div>
+
+            <div class="logcontainer">
+                <div class="logheader">Activity Log</div>
+                <div id="gamelog" class="logcontent">
+                    <div class="logitem">Hey,click the cat to get coins/interact with it</div>
+                    <div class="logitem">You will get coins after clicking on cat.</div>
+                    <div class="logitem">Buy your cat treat, mouse, pillow with coins.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="centerpanel">
+            <div class="roomcontainer">
+                <div class="wall">
+                    <div class="windowframe">
+                        <div class="windowglass">
+                            <div class="skybg">
+                                <div class="sun"></div>
+                                <div class="moon"></div>
+                            </div>
+                            <div class="reflection"></div>
+                        </div>
+                        <div class="ledge"></div>
+                    </div>
+                    <div class="clock" id="gameclock">12:00</div>
+                    <div class="pictureframe">
+                        <div class="picart"></div>
+                    </div>
+                </div>
+                <div class="floor">
+                    <div class="rug"></div>
+                    <div class="bowl">
+                        <div class="foodpile" id="foodvisual"></div>
+                    </div>
+
+                    <div class="catwrapper" id="thecat" onclick="interactcat(event)">
+                        <div class="catshadow"></div>
+                        <div class="catbody">
+                            <div class="stripe s1"></div>
+                            <div class="stripe s2"></div>
+                            <div class="stripe s3"></div>
+                            <div class="catchest"></div>
+                        </div>
+                        <div class="cathead">
+                            <div class="ear left">
+                                <div class="inner"></div>
+                            </div>
+                            <div class="ear right">
+                                <div class="inner"></div>
+                            </div>
+                            <div class="facebase">
+                                <div class="eye left">
+                                    <div class="eyeball">
+                                        <div class="pupil"></div>
+                                        <div class="shine"></div>
+                                    </div>
+                                    <div class="eyelid"></div>
+                                </div>
+                                <div class="eye right">
+                                    <div class="eyeball">
+                                        <div class="pupil"></div>
+                                        <div class="shine"></div>
+                                    </div>
+                                    <div class="eyelid"></div>
+                                </div>
+                                <div class="nose"></div>
+                                <div class="snout">
+                                    <div class="mouth left"></div>
+                                    <div class="mouth right"></div>
+                                </div>
+                                <div class="cheek left"></div>
+                                <div class="cheek right"></div>
+                                <div class="whiskers left">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="whiskers right">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cattail">
+                            <div class="tailtip"></div>
+                        </div>
+                        <div class="paw leftfront"></div>
+                        <div class="paw rightfront"></div>
+                        <div class="paw leftback"></div>
+                        <div class="paw rightback"></div>
+
+                        <div class="heartparticles" id="heartcontainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rightpanel">
+            <div class="walletbox">
+                <span>coins</span>
+                <span id="moneyval" class="cointext">0</span>
+            </div>
+
+            <div class="actiongrid">
+                <button class="gamebtn feed" onclick="dofeed()">
+                    <span class="btnicon"></span>
+                    <span class="btntext">feed</span>
+                </button>
+                <button class="gamebtn pet" onclick="dopet()">
+                    <span class="btnicon"></span>
+                    <span class="btntext">pet</span>
+                </button>
+                <button class="gamebtn play" onclick="doplay()">
+                    <span class="btnicon"></span>
+                    <span class="btntext">play</span>
+                </button>
+                <button class="gamebtn sleep" onclick="dosleep()">
+                    <span class="btnicon"></span>
+                    <span class="btntext">sleep</span>
+                </button>
+            </div>
+
+            <div class="shopcontainer">
+                <div class="shopheader">shop</div>
+                <div class="shoplist">
+                    <div class="shopcard" onclick="buyitem('treat')">
+                        <div class="itemicon"></div>
+                        <div class="iteminfo">
+                            <span class="name">treat</span>
+                            <span class="cost">50 coins</span>
+                        </div>
+                    </div>
+                    <div class="shopcard" onclick="buyitem('toy')">
+                        <div class="itemicon"></div>
+                        <div class="iteminfo">
+                            <span class="name">mouse</span>
+                            <span class="cost">150 coins</span>
+                        </div>
+                    </div>
+                    <div class="shopcard" onclick="buyitem('pillow')">
+                        <div class="itemicon"></div>
+                        <div class="iteminfo">
+                            <span class="name">pillow</span>
+                            <span class="cost">300 Coins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

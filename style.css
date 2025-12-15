@@ -1,0 +1,805 @@
+:root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --bg-color: #dfe6e9;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --shadow: 0 10px 20px rgba(0,0,0,0.1);
+    --cat-color: #2d3436;
+    --cat-secondary: #636e72;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #2d3436;
+}
+
+.backgroundlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cloud {
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(10px);
+}
+
+.cloud.one { width: 100px; height: 40px; top: 10%; left: 10%; animation: floatcloud 20s infinite linear; }
+.cloud.two { width: 150px; height: 60px; top: 20%; left: 60%; animation: floatcloud 25s infinite linear reverse; }
+.cloud.three { width: 80px; height: 30px; top: 5%; left: 80%; animation: floatcloud 15s infinite linear; }
+
+@keyframes floatcloud {
+    from { transform: translateX(-50px); }
+    to { transform: translateX(50px); }
+}
+
+.appwrapper {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh;
+    background-color: rgba(255,255,255,0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    padding: 20px;
+    gap: 20px;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.leftpanel, .rightpanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.centerpanel {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #fff;
+}
+
+.profilecard, .statscontainer, .logcontainer, .walletbox, .shopcontainer {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.profilecard:hover, .walletbox:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.moodbadge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    background: #f1f2f6;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.levelbox {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #636e72;
+    display: flex;
+    justify-content: space-between;
+}
+
+.statrow {
+    margin-bottom: 15px;
+}
+
+.labelgroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.prognesstrack {
+    height: 10px;
+    background-color: #dfe6e9;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progressfill {
+    height: 100%;
+    width: 50%;
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.red { background: linear-gradient(90deg, #ff7675, #d63031); }
+.orange { background: linear-gradient(90deg, #fab1a0, #e17055); }
+.blue { background: linear-gradient(90deg, #74b9ff, #0984e3); }
+
+.numval {
+    font-size: 11px;
+    color: #b2bec3;
+    float: right;
+    margin-top: 2px;
+}
+
+.logcontainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.logheader {
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #f1f2f6;
+    padding-bottom: 5px;
+}
+
+.logcontent {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 12px;
+    color: #636e72;
+}
+
+.logitem {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+    animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.roomcontainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.wall {
+    height: 65%;
+    background-color: #ffeaa7;
+    position: relative;
+    border-bottom: 10px solid #e0e0e0;
+}
+
+.floor {
+    height: 35%;
+    background-color: #fab1a0;
+    position: relative;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
+}
+
+.windowframe {
+    width: 140px;
+    height: 140px;
+    background-color: #fff;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    border: 8px solid #dfe6e9;
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.windowglass {
+    width: 100%;
+    height: 100%;
+    background-color: #81ecec;
+    position: relative;
+}
+
+.skybg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: background-color 2s;
+}
+
+.skybg.night {
+    background-color: #2d3436;
+}
+
+.sun {
+    width: 30px;
+    height: 30px;
+    background-color: #ffeaa7;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 0 20px #fdcb6e;
+    transition: top 2s;
+}
+
+.moon {
+    width: 25px;
+    height: 25px;
+    background-color: #f1f2f6;
+    border-radius: 50%;
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    transition: top 2s;
+}
+
+.skybg.night .sun { top: -50px; }
+.skybg.night .moon { top: 20px; }
+
+.reflection {
+    width: 150%;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: rotate(-45deg);
+}
+/* gotta make some unique thngs<3*/
+.clock {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    border: 4px solid #2d3436;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+}
+
+.picart {
+    width: 40px;
+    height: 40px;
+    background: #ff7675;
+    border-radius: 50%;
+}
+
+.rug {
+    width: 200px;
+    height: 80px;
+    background-color: #a29bfe;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 0 #6c5ce7;
+}
+
+.bowl {
+    width: 50px;
+    height: 20px;
+    background-color: #d63031;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    border-radius: 0 0 20px 20px;
+    border: 2px solid #b71515;
+}
+
+.foodpile {
+    width: 40px;
+    height: 15px;
+    background-color: #e17055;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: -10px;
+    left: 3px;
+    display: none;
+}
+
+/* meow's css meow meow */
+.catwrapper {
+    width: 140px;
+    height: 160px;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: transform 0.1s;
+    z-index: 10;
+}
+
+.catwrapper:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.catbody {
+    width: 90px;
+    height: 110px;
+    background-color: var(--cat-color);
+    border-radius: 50px 50px 40px 40px;
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    z-index: 2;
+}
+
+.catchest {
+    width: 50px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    opacity: 0.1;
+}
+
+.stripe {
+    background-color: #000;
+    opacity: 0.3;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.s1 { width: 40px; height: 4px; top: 80px; left: 25px; }
+.s2 { width: 30px; height: 4px; top: 90px; left: 30px; }
+.s3 { width: 20px; height: 4px; top: 100px; left: 35px; }
+
+.cathead {
+    width: 100px;
+    height: 90px;
+    background-color: var(--cat-color);
+    border-radius: 45%;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 3;
+    animation: headbob 3s infinite ease-in-out;
+}
+
+@keyframes headbob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(2px); }
+}
+
+.ear {
+    width: 30px;
+    height: 35px;
+    background-color: var(--cat-color);
+    position: absolute;
+    top: -10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.ear .inner {
+    width: 15px;
+    height: 20px;
+    background-color: #ff7675;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+    opacity: 0.7;
+}
+
+.ear.left { left: 5px; transform: rotate(-20deg); }
+.ear.right { right: 5px; transform: rotate(20deg); }
+
+.facebase {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.eye {
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    overflow: hidden;
+    border: 2px solid #000;
+}
+
+.eye.left { left: 18px; }
+.eye.right { right: 18px; }
+
+.pupil {
+    width: 10px;
+    height: 18px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    transition: width 0.3s, height 0.3s;
+}
+
+.shine {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.eyelid {
+    width: 100%;
+    height: 0%;
+    background-color: var(--cat-color);
+    position: absolute;
+    top: 0;
+    transition: height 0.1s;
+    z-index: 5;
+}
+
+.nose{
+    width: 10px;
+    height: 8px;
+    background-color: #fab1a0;
+    position: absolute;
+    top:55px;
+left: 45px;
+}
+.snout{
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    width: 20px;
+}
+.mouth{
+    width: 10px;
+    height: 8px;
+    border-bottom: 2px solid #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+}
+.mouth.left{
+    left: -2px;
+    left: 8px;
+}
+.cheek{
+    width: 15px;
+    height: 10px;
+    background-color: #ff7675;
+    border-radius: 50%;
+    position: absolute;
+    top: 60px;
+    opacity: 0.4;
+}
+.cheek.left{
+    left: 10px;
+}
+.cheek.right{
+    right: 10px;
+}
+.whiskers{
+    position: absolute;
+    top: 55px;
+}
+.whiskers.left{
+    left: -15px;
+}
+.whiskers.right{
+    right: -15px;
+    transform: scaleX(-1);
+}
+.whiskers span{
+    display: block;
+    width: 35px;
+    height: 2px;
+    background-color: #b2bec3;
+    margin: 4px 0;
+}
+.whiskers span:nth-child(1){
+    transform: rotate(10deg);
+}
+.whiskers span:nth-child(2){
+    transform:rotate(0deg);
+}
+.whiskers span:nth-child(3){
+    transform: rotate(0deg);
+}
+.cattail{
+    width: 60px;
+    height: 15px;
+    background-color: var(--cat-color);
+    position: absolute;
+    bottom: 20px;
+    right: -25px;
+    border-radius: 10px;
+    z-index: 1;
+    animation: tailswish 4s infinite ease-in-out;
+}
+.tailtip{
+    width: 20px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    opacity: 0.2;
+}
+@keyframes tailswish{
+    0%{ transform: rotate(-10deg);}
+    50%{transform: rotate(10deg);}
+    100%{transform: rotate(-10deg);}
+}
+
+.paw{
+    width: 20px;
+    height: 15px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px 10px 5px 5px;
+    z-index: 4;
+    border: 1px solid #ddd;
+}
+.paw.leftfront{
+    left: 40px;
+}
+.paw.rightfront{
+    right: 40px;
+}
+.paw.leftback{
+    left: 15px;
+    bottom: 5px;
+    z-index: 1;
+    background-color: var(--cat-color);
+}
+.paw.rightback{
+    right: 15px;
+    bottom: 5px;
+    z-index: 1;
+    background-color: var(--cat-color);
+}
+.catshadow{
+    width: 100px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+}
+/*lets make it moore  interactiveveveveve yayay*/
+.blink .eyelid{
+    height: 100%;
+}
+.happy .pupil{
+    width: 14px;
+    height: 14px;
+}
+.angry .eyelid{
+    height: 40%;
+    transform: rotate(10deg) translateY(-5px);
+}
+.angry .eye{
+    border-color: red;
+}
+.sleeping .eyelid{
+    height: 100%;
+}
+.sleeping .cathead{
+    transform: rotate(10deg) translateY(5px);
+    animation: none;
+}
+.eating .cathead{
+    animation: eatmotion 0.5s infinite;
+}
+@keyframes eatmotion{
+    0%{transform: translateY(0) rotate(0);}
+    50%{transform: translateY(5px) rotate(5deg);}
+    100%{transform: translateY(0) rotate(0);}
+}
+.walletbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #fdcb6e, #ffeaa7);
+    color: #d35400;
+    font-weight: bold;
+    font-size: 18px;
+}
+.cointext{
+    font-family: monospace;
+    font-size: 22px;
+}
+.actiongrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.gamebtn{
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-weight: 600;
+    color: white;
+    position: relative;
+    top: 0;
+}
+.gamebtn:active{
+    top: 4px;
+}
+.gamebtn.feed{
+    background-color: #ff7675;
+}
+.gamebtn.pet{
+    background-color: #74b9ff;
+}
+.gamebtn.play{
+    background-color: #a29bfe;
+}
+.gamebtn.sleep{
+    background-color: #55efc4;
+}
+.btnicon{
+    font-size: 24px;
+}
+.btntext{
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.shopcontainer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.shopheader{
+    font-weight: bold;
+    margin-bottom: 10px;/*had to check 5 times to fix it */
+    color: #636e72;
+}
+.shoplist{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+    overflow-y: auto;
+}
+.shopcard{
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    gap: 15px;
+    padding: 10px;
+    cursor: pointer;
+    background: #f1f2f6;
+}
+.shopcard:hover{
+    border-color: var(--primary);
+    background: white;
+}
+.itemicon{
+    font-size: 20px;
+    background: white;
+    padding: 8px;
+    border-radius: 50%;
+}
+.iteminfo{
+    display: flex;
+    flex-direction: column;
+}
+.iteminfo .name{
+    font-size: 14px;
+    font-weight: bold;
+}
+.iteminfo .cost {
+    font-size: 11px;
+    color: #b2bec3;
+}
+.heartparticles{
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+@keyframes floatup {
+    0%{
+        transform: translateY(0) scale(0.5); 
+        opacity:1;
+    }
+    100%{
+       transform: translateY(0) scale(0.5);
+       opacity: 1;
+    }
+
+}
+.popup{
+    background: white;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 100;
+    animation: popin 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);/*i had to test this too for many times*/
+}
+@keyframes popin{
+    from{
+        transform: translate(-50%, -50%) scale(0);
+    } to{
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+.tutorial{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    max-width: 600px;
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    text-align: center;
+}
